@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import 'react-native-gesture-handler';
 import Nav from "./src/Navigation";
 import { AuthContextProvider } from "./src/context/AuthContext";
 
