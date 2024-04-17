@@ -10,6 +10,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Screens
+import HomeScreen from './screens/movie/HomeScreen';
 import MoviesScreen from './screens/movie/MoviesScreen';
 import MovieDetailsScreen from './screens/movie/MovieDetailsScreen';
 import MovieReviewsScreen from './screens/movie/MovieReviewsScreen';
@@ -41,6 +42,7 @@ const AuthStackScreen = () => {
     </AuthStack.Navigator>
 }
 
+const homeName = 'Home';
 const moviesName = 'Movies';
 const favoritesName = 'Favorites';
 
@@ -50,14 +52,16 @@ function Navigation() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName={moviesName}
+        initialRouteName={homeName}
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
             let rn = route.name;
 
-            if (rn === moviesName) {
-              iconName = focused ? 'home' : 'home-outline';
+            if (rn === homeName) {
+                iconName = focused ? 'home' : 'home-outline';
+            } else if (rn === moviesName) {
+              iconName = focused ? 'film' : 'film-sharp';
             } else if (rn === favoritesName) {
               iconName = focused ? 'heart' : 'heart-sharp';
             }
@@ -73,6 +77,7 @@ function Navigation() {
           style: { padding: 10, height: 70}
         }}>
 
+        <Tab.Screen name={homeName} component={HomeScreen} />
         <Tab.Screen name={moviesName} component={MoviesScreen} />
         <Tab.Screen name={favoritesName} component={FavoritesScreen} />
       </Tab.Navigator>
@@ -89,7 +94,7 @@ function DrawerNavigator() {
             <Drawer.Screen name='Profile' component={ProfileScreen} />
             <Drawer.Screen name='MovieReviews' component={MovieReviewsScreen} />
         </Drawer.Navigator>
-    )
+    );
 }
 
 export default Navigation;
