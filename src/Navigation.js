@@ -41,23 +41,45 @@ const AuthStackScreen = () => {
     </AuthStack.Navigator>
 }
 
+const moviesName = 'Movies';
+const favoritesName = 'Favorites';
+
 const Tab = createBottomTabNavigator();
-function TabNavgiator() {
-    return (
-        <Tab.Navigator>
-            <Tab.Screen name='Movies' component={HomeStackScreen} options={{
-                tabBarIcon: ({size}) => {
-                    <MaterialCommunityIcons name='home' color='black' size={size} />
-                }
-            }} />
-            <Tab.Screen name='Favorites' component={FavoritesScreen} options={{
-                tabBarIcon: ({size}) => {
-                    <MaterialCommunityIcons name='cart' color='black' size={size} />
-                }
-            }} />
-        </Tab.Navigator>
-    )
+
+function Navigation() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        initialRouteName={moviesName}
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            let rn = route.name;
+
+            if (rn === moviesName) {
+              iconName = focused ? 'home' : 'home-outline';
+            } else if (rn === favoritesName) {
+              iconName = focused ? 'heart' : 'heart-sharp';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'tomato',
+          inactiveTintColor: 'grey',
+          labelStyle: { paddingBottom: 10, fontSize: 10 },
+          style: { padding: 10, height: 70}
+        }}>
+
+        <Tab.Screen name={moviesName} component={MoviesScreen} />
+        <Tab.Screen name={favoritesName} component={FavoritesScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
 }
+
 
 const Drawer = createDrawerNavigator();
 function DrawerNavigator() {
@@ -70,11 +92,4 @@ function DrawerNavigator() {
     )
 }
 
-export default function Navigation() {
-    const { user } = UserAuth();
-    return (
-        <NavigationContainer>
-            {user ? <DrawerNavigator /> : <AuthStackScreen />}
-        </NavigationContainer>
-    );
-}
+export default Navigation;
