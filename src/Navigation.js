@@ -1,11 +1,11 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // Navigators
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -14,43 +14,63 @@ import HomeScreen from './screens/movie/HomeScreen';
 import MoviesScreen from './screens/movie/MoviesScreen';
 import MovieDetailsScreen from './screens/movie/MovieDetailsScreen';
 import MovieReviewsScreen from './screens/movie/MovieReviewsScreen';
-import SignUpScreen from './screens/movie/SignUpScreen';
 import LoginScreen from './screens/movie/LoginScreen';
+import SignUpScreen from './screens/movie/SignUpScreen';
 import ProfileScreen from './screens/movie/ProfileScreen';
 import FavoritesScreen from './screens/movie/FavoritesScreen';
 
+import CustomButton from "./shared/CustomButton";
+
 // Context
 import { UserAuth } from './context/AuthContext';
-
-const Stack = createStackNavigator();
-
-function HomeStackScreen() {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name='SignUp' component={SignUpScreen} />
-            <Stack.Screen name='Login' component={LoginScreen} />
-            <Stack.Screen name='MovieDetails' component={MovieDetailsScreen} />
-        </Stack.Navigator>
-    );
-}
-
-const AuthStack = createStackNavigator();
-const AuthStackScreen = () => {
-    <AuthStack.Navigator>
-            <AuthStack.Screen name='SignUp' component={SignUpScreen} />
-            <AuthStack.Screen name='Login' component={LoginScreen} />
-    </AuthStack.Navigator>
-}
-
+const Stack = createNativeStackNavigator();
 const homeName = 'Home';
 const moviesName = 'Movies';
 const favoritesName = 'Favorites';
 
 const Tab = createBottomTabNavigator();
 
-function Navigation() {
+function Navigation2() {
   return (
     <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Group
+          screenOptions={{ headerStyle: { backgroundColor: 'papayawhip' } }}>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              title: 'Home',
+            }}
+          />
+          <Stack.Screen
+            name="SignIn"
+            component={LoginScreen}
+            options={{
+              title: 'Sign In',
+            }}
+          />
+          <Stack.Screen
+            name="SignUp"
+            component={SignUpScreen}
+            options={{
+              title: 'Sign Up',
+            }}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={ProfileScreen}
+            options={{
+              title: 'Profile',
+            }}
+          />
+        </Stack.Group>
+      </Stack.Navigator>
+      </NavigationContainer>
+      );
+      }
+      function Navigator() {
+        return (
       <Tab.Navigator
         initialRouteName={homeName}
         screenOptions={({ route }) => ({
@@ -81,10 +101,8 @@ function Navigation() {
         <Tab.Screen name={moviesName} component={MoviesScreen} />
         <Tab.Screen name={favoritesName} component={FavoritesScreen} />
       </Tab.Navigator>
-    </NavigationContainer>
   );
-}
-
+      }
 
 const Drawer = createDrawerNavigator();
 function DrawerNavigator() {
@@ -97,4 +115,4 @@ function DrawerNavigator() {
     );
 }
 
-export default Navigation;
+export default Navigation2;
