@@ -21,12 +21,12 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const updateUser = async (name, email) => {
+  const updateUser = async (username, email) => {
     try {
       await updateProfile(auth.currentUser, {
-        displayName: name,
+        username,
+        displayName: username,
         email: email,
-        photoURL: "../images/tiger.png",
       });
       console.log(auth.currentUser.displayName, auth.currentUser.email);
       alert("Your Profile is updated");
