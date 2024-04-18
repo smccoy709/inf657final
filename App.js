@@ -5,7 +5,7 @@ import { AuthContextProvider } from './src/context/AuthContext';
 
 export default function App() {
   return (
-    <AuthContextProvider>
+    <AuthContextProvider style={styles.container}>
       <View style={styles.container}>
         <Nav />
       </View>
