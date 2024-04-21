@@ -1,17 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Image, useWindowDimensions } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
-import { UserAuth } from "../context/AuthContext";
+import { userAuth } from "../context/AuthContext";
 import CustomInput from "../shared/CustomInput";
 import CustomButton from "../shared/CustomButton";
+import account from "../../assets/images/account.png";
 
 export default function HomeScreen() {
-  const [username, setUsername] = useState("");
-  const { signIn, logOut } = UserAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  <Text>Welcome {username}</Text>
+  const { height } = useWindowDimensions();
   const navigation = useNavigation();
+  const {signIn, logOut} = userAuth();
 
   const onSignIn = async (e) => {
     e.preventDefault();
@@ -23,11 +23,25 @@ export default function HomeScreen() {
       console.log(err);
     }
   };
+  const OnLogOut = async () => {
+    try {
+      await logOut();
+      console.warn("You are logged out");
+      navigation.navigate("Home");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const onSignUp = () => {
     navigation.navigate("SignUp");
   };
   return (
     <View style={styles.main}>
+          <Image
+        source={account}
+        style={(styles.tiger, { height: height * 0.3 })}
+        resizeMode="contain"
+      />
         <CustomInput
             placeholder="Email"
             value={email}
@@ -58,9 +72,14 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   main: {
-    alignItems: 'center',
-    verticalAlign: 'middle',
+    alignItems: "center",
     padding: 40,
+    marginTop: 100,
   },
-  tiger: { width: "70%", height: 100, maxHeight: 100, maxWidth: 500 },
+  account: {
+    width: "70%",
+    height: 100,
+    maxHeight: 100,
+    maxWidth: 500,
+  },
 });

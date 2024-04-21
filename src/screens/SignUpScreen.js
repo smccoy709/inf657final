@@ -17,9 +17,7 @@ import {
     const [password, setPassword] = useState("");
     const [conformPassword, setConformPassword] = useState("");
   
-    const { height } = useWindowDimensions();
-  
-    const { createUser } = UserAuth();
+    const {createUser} = UserAuth();
     const navigation = useNavigation();
   
     const onRegister = async (e) => {
@@ -27,7 +25,7 @@ import {
       const data = { username, email, password, conformPassword };
       console.log(data);
       try {
-        await createUser(email, password).then((userCredential) => {
+        await createUser(email, password, username).then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
           navigation.navigate("Home");
@@ -73,9 +71,9 @@ import {
       backgroundColor: "#ffe4b5",
       padding: 40,
     },
-    tiger: { width: "70%", height: 100, maxHeight: 100, maxWidth: 500 },
     title: {
       fontSize: 30,
       fontWeight: "bold",
+      marginTop: 150,
     },
   });
