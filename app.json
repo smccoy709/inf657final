@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MovieReviewApp",
-    "slug": "MovieReviewApp",
+    "name": "moviecinema",
+    "slug": "moviecinema",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
