@@ -7,6 +7,6 @@ Upon first entering the application, a welcome screen will be displayed.  Click 
 
 If I like the film "Halloween," I can search for "Halloween" and press the heart icon on the film screen and favorite them too.  I can go back to the main page and click the "Saved" icon on the bottom tab navigation and a list of movies that have been "Favorited" will appear.  If I want to start my list of favorite films over again, I can clear the list of Saved Movies by clicking the "Clear" button in the upper right corner of the "Saved" screen to completely wipe the Saved screen's favorite list to a blank slate.
 # Account Creation
-(This part I am still trying to get to work.  I will update this section once I have completed it).
+A user can click on the "Account" tab on the bottom tab navigation to sign into their account if they have one.  If they do not, they can click the "Need an account? Sign Up" link to go to a new screen to sign up for an account using Stack navigation.  A user can sign up for an account and their information is immediately stored in the Firebase database where it will log them in right away where they can see the email they are logged into and can log out of their account.  The username and password they created can be used to sign into their account anytime and log out from it.  While logged in, a user can navigate the app as normal.
 # Testing
-(This part will be updated once the testing phase is completed).
+The app has been fully tested on iOS and Android devices.  The iOS device was tested through the Expo app on my iPhone 11 Pro Max.  The Android device was used through an Android Emulator.  The app works on both devices the way it is intended to.
