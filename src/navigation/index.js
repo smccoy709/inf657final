@@ -8,9 +8,7 @@ import SearchScreen from "../screens/SearchScreen";
 import SavedScreen from "../screens/SavedScreen";
 import HomeScreen from "../screens/HomeScreen";
 import AccountScreen from "../screens/AccountScreen";
-import SignUpScreen from "../screens/SignUpScreen";
 import PersonScreen from "../screens/PersonScreen";
-import ProfileScreen from "../screens/ProfileScreen";
 import { Ionicons } from "@expo/vector-icons";
 import MovieScreen from "../screens/MovieScreen";
 
@@ -31,8 +29,6 @@ export default function AppNavigation() {
         <Stack.Screen name="Movie" component={MovieScreen} />
         <Stack.Screen name="Person" component={PersonScreen} />
         <Stack.Screen name="Search" component={SearchScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
       </Stack.Navigator>
     );
   }
