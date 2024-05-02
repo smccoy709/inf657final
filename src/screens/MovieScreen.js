@@ -3,6 +3,7 @@ import {
   Text,
   Dimensions,
   ScrollView,
+  StyleSheet,
   TouchableOpacity,
   Image,
 } from "react-native";
@@ -219,7 +220,7 @@ export default function MovieScreen() {
         {/* Movie Title */}
 
         <View className="space-y-3 p-4">
-          <Text className="text-white text-left text-2xl font-bold tracking-widest">
+          <Text className="text-white text-left text-2xl font-bold tracking-widest" style={styles.movieName}>
             {movie?.title}
           </Text>
 
@@ -241,11 +242,9 @@ export default function MovieScreen() {
 
           {/* Release Year, Runtime */}
           {movie?.id ? (
-            <View className=" bg-[#2496ff] p-2 w-3/4 rounded-lg]">
-              <Text className="text-white font-semibold text-base text-left">
-                {formatPopularity(movie?.popularity)}
-                {" * "}
-                {formatRuntime(movie?.runtime)} {}{" "}
+            <View className=" bg-[#2496ff] p-2 w-3/4 rounded-lg]" style={styles.movieInfoBox}>
+              <Text className="text-white font-semibold text-base text-left" style={styles.movieInfo}>
+                {formatRuntime(movie?.runtime)} {}{"  |   "}
                 {movie?.release_date?.split("-")[0] || "N/A"}
               </Text>
             </View>
@@ -271,3 +270,15 @@ export default function MovieScreen() {
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  movieName: {
+    textAlign: 'center',
+  },
+  movieInfo: {
+    textAlign: 'center',
+  },
+  movieInfoBox: {
+    width: '100%',
+  },
+})
