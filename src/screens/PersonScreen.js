@@ -2,6 +2,7 @@ import {
   View,
   Text,
   ScrollView,
+  StyleSheet,
   Image,
   Dimensions,
   TouchableOpacity,
@@ -68,7 +69,7 @@ export default function PersonScreen() {
       />
 
       {/* Close Button */}
-      <View className="flex-row justify-between absolute right-0 top-o mx-4 z-10 my-3">
+      <View className="flex-row justify-between absolute right-0 top-o mx-4 z-10 my-3" style={styles.closeButton}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           className="rounded-xl p-2 bg-[#2496ff]"
@@ -127,3 +128,9 @@ export default function PersonScreen() {
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+closeButton: {
+  marginTop: 45,
+},
+})
